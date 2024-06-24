@@ -19,12 +19,14 @@
       const [amount, setAmount] = React.useState(0);
       const [flipped, setFlipped] = React.useState(false);
       const onChange = (e) => {
+        // input값 변화 시 e.target의 value 적용
         setAmount(e.target.value);
       };
       const reset = () => {
         setAmount(0);
       };
       const onFlip = () => {
+        // flip시 reset 적용
         reset();
         setFlipped((current) => !current);
       };
@@ -34,6 +36,7 @@
           <h1>Super Converter</h1>
           <div>
             <label htmlFor="minutes">Minutes</label>
+            {/* jsx문법에서 for => htmlFor */}
             <input
               value={flipped ? amount * 60 : amount}
               id="minutes"
