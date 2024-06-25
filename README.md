@@ -88,3 +88,30 @@ Btn.propTypes = {
   fontSize: PropTypes.number.isRequired,
 };
 ```
+
+### create-react-app
+
+```bash
+$npx create-react-app my-app-name
+$cd my-app-name
+$npm start
+```
+
+### Component에 style 적용
+
+##### Button.js
+
+```javascript
+import styles from "./Button.module.css";
+function Button(prop) {
+  return <button className={styles.btn}>{prop.text}</button>;
+}
+```
+
+```css
+.btn {
+  color: white;
+}
+```
+
+##### `className`에 **style.클래스이름** 을 통해 스타일 적용 가능
