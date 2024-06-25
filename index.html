@@ -11,78 +11,45 @@
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 
   <script type="text/babel">
-    const root = document.getElementById("root");
-
-    function MinutesToHours() {
-      const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
-      const onChange = (e) => {
-        // input값 변화 시 e.target의 value 적용
-        setAmount(e.target.value);
-      };
-      const reset = () => {
-        setAmount(0);
-      };
-      const onFlip = () => {
-        // flip시 reset 적용
-        reset();
-        setFlipped((current) => !current);
-      };
-
+    function Btn(props) {
+      console.log(props.txt, "Changed");
       return (
-        <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            {/* jsx문법에서 for => htmlFor */}
-            <input
-              value={flipped ? amount * 60 : amount}
-              id="minutes"
-              type="number"
-              placeholder="Minutes"
-              onChange={onChange}
-              disabled={flipped}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input
-              value={flipped ? amount : Math.round(amount / 60)}
-              id="hours"
-              type="number"
-              placeholder="Hours"
-              disabled={!flipped}
-              onChange={onChange}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={onFlip}>Flip</button>
-        </div>
+        <button
+          onClick={props.onClick}
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {props.txt}
+        </button>
       );
     }
-    function KmToMiles() {
-      return <h3>Km to Miles</h3>;
-    }
+    Btn.propTypes = {
+      txt: PropTypes.string,
+      fontSize: PropTypes.number,
+    };
+    const MemorizedBtn = React.memo(Btn);
+
     function App() {
-      const [index, setIndex] = React.useState("xx");
-      const onSelect = (e) => {
-        setIndex(e.target.value);
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => {
+        setValue((current) => "Revert Changes");
       };
       return (
         <div>
-          <h1>Super Converter</h1>
-          <select value={index} onChange={onSelect}>
-            <option value="xx">Select your Units</option>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">Km & Miles</option>
-          </select>
-          <hr />
-          {index === "0" ? <MinutesToHours /> : null}
-          {index === "1" ? <KmToMiles /> : null}
+          <MemorizedBtn txt={value} onClick={changeValue} />
+          <MemorizedBtn txt="Confirm" />
         </div>
       );
     }
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
   </script>
 </html>
