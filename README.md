@@ -40,3 +40,51 @@ function App() {
 ```
 
 ###### 삼항연산자 사용, `{}` 안에서 컴포넌트 선택하기
+
+### props 사용
+
+```javascript
+function Btn(props) {
+  console.log(props);
+  return <button>{props.txt}</button>;
+}
+```
+
+##### 또는
+
+```javascript
+function Btn({ txt }) {
+  console.log(props);
+  return <button>{txt}</button>;
+}
+```
+
+### memo
+
+##### props가 변경되지 않은 컴포넌트를 rerendering 할지말지 결정
+
+```javascript
+function Btn(props) {
+  console.log(props.txt, "Changed");
+  return <button onClick={props.onClick}>{props.txt}</button>;
+}
+const MemorizedBtn = React.memo(Btn);
+```
+
+### prop-types 패키지를 통한 타입 지정
+
+```javascript
+Btn.propTypes = {
+  txt: PropTypes.string,
+  fontSize: PropTypes.number,
+};
+```
+
+##### `isRequired`를 사용해서 필수 prop임을 명시
+
+```javascript
+Btn.propTypes = {
+  txt: PropTypes.string.isRequired,
+  fontSize: PropTypes.number.isRequired,
+};
+```
