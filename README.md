@@ -114,4 +114,25 @@ function Button(prop) {
 }
 ```
 
-##### `className`에 **style.클래스이름** 을 통해 스타일 적용 가능
+##### `className`에 **style.클래스이름** 을 통해 스타일 적용 가능<br>해당 기능을 통해 만들어진 컴포넌트에는 랜덤한 클래스 이름이 부여됨
+
+![cssModule](./imgs/cssModule.png)
+
+### useEffect
+
+##### 컴포넌트가 처음 rendering 될 때만 코드를 실행하고 싶을 때<br>ex. API로 데이터 가져올 때
+
+```javascript
+import { useEffect, useState } from "react";
+function App() {
+  console.log("Rendered"); // 렌더링 될 때마다 출력
+  const runOnlyOnce = () => {
+    console.log("Only once");
+  };
+  useEffect(runOnlyOnce, []);
+  // runOnlyOnce 함수는 렌더링 시 한번만 호출
+  return <div></div>;
+}
+```
+
+##### 특정 state만 변화할 때만 영향을 주고 싶을 때
