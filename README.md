@@ -136,3 +136,29 @@ function App() {
 ```
 
 ##### 특정 state만 변화할 때만 영향을 주고 싶을 때
+
+```javascript
+useEffect(() => {
+  console.log("keyword state changes");
+}, [keyword]);
+```
+
+##### 배열 안에 keyword state가 변화할 때마다 코드를 실행하는 코드
+
+##### useEffect Cleanup function
+
+##### 컴포넌트가 생성될 때 useEffect가 실행 => 종료할 때도 실행할 함수 설정
+
+```javascript
+function Hello() {
+  useEffect(() => {
+    console.log("created"); // 컴포넌트 렌더 시 실행
+    return () => {
+      console.log("destroyed"); // 컴포넌트가 사라질 때 실행
+    };
+  }, []);
+  return <h1>Hello</h1>;
+}
+```
+
+##### return 값으로 destroy 시 실행할 함수 전달
