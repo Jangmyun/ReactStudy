@@ -177,3 +177,22 @@ const onSubmit = (e) => {
   setToDo("");
 };
 ```
+
+### api fetch
+
+```javascript
+useEffect(() => {
+  fetch("url")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}, []);
+```
+
+##### 또는
+
+```javascript
+const getData = async () => {
+  const json = await (await fetch("url")).json();
+  console.log(json);
+};
+```
