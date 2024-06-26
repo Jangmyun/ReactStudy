@@ -196,3 +196,21 @@ const getData = async () => {
   console.log(json);
 };
 ```
+
+### react-router-dom
+
+##### `npm install react-router-dom`
+
+```javascript
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/movie" element={<Detail></Detail>}></Route>
+      </Routes>
+    </Router>
+  );
+}
+```
