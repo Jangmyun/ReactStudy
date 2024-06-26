@@ -162,3 +162,18 @@ function Hello() {
 ```
 
 ##### return 값으로 destroy 시 실행할 함수 전달
+
+### 배열 state 에 value 추가
+
+##### `[...array]` 를 사용해서 배열의 값 복사
+
+```javascript
+const onSubmit = (e) => {
+  e.preventDefault();
+  if (toDo === "") {
+    return;
+  }
+  setToDos((currentArray) => [toDo, ...currentArray]);
+  setToDo("");
+};
+```
