@@ -214,3 +214,30 @@ function App() {
   );
 }
 ```
+
+##### `Link`를 통한 path 이동
+
+```javascript
+import { Link } from "react-router-dom";
+function Compo() {
+  return <h1><Link to="/detail"><Link/></h1>
+}
+```
+
+##### `to` prop으로 이동할 path 지정
+
+```javascript
+function Compo({id}) {
+  return <h1><Link to={`/detail/${id}`}><Link/></h1>
+}
+```
+
+##### `useParams` 함수 사용해서 값이 변경되는 url path 값에 접근
+
+```javascript
+import { useParams } from "react-router-dom";
+function Detail() {
+  const { id } = useParams();
+  return <h1>{id} Detail</h1>;
+}
+```
